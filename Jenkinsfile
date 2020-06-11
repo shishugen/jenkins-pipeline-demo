@@ -2,12 +2,12 @@
 pipeline {
     agent any
     environment {
-        HARBOR_CREDS = credentials('jenkins-harbor-creds')
+        HARBOR_CREDS = credentials('harbor')
         K8S_CONFIG = credentials('jenkins-k8s-config')
         GIT_TAG = sh(returnStdout: true,script: 'git describe --tags --always').trim()
     }
     parameters {
-        string(name: 'HARBOR_HOST', defaultValue: '172.23.101.66', description: 'harbor仓库地址')
+        string(name: 'HARBOR_HOST', defaultValue: '192.168.103.236', description: 'harbor仓库地址')
         string(name: 'DOCKER_IMAGE', defaultValue: 'tssp/pipeline-demo', description: 'docker镜像名')
         string(name: 'APP_NAME', defaultValue: 'pipeline-demo', description: 'k8s中标签名')
         string(name: 'K8S_NAMESPACE', defaultValue: 'demo', description: 'k8s的namespace名称')
